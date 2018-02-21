@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="entry-list">
+    {% for entry in all_journal_entries %}
+    <article>
+        <h2><a href="detail.html">{{ entry.title }}</a></h2>
+        <time datetime="2016-01-31">{{ entry.date }}</time>
+        <div style="margin-top: 10px;">
+        {% for id, tag_list in associated_tags_dict.items() %}
+            {% if id == entry.journal_id %}
+                {% if tag_list %}
+                    {% for tag in tag_list  %}
+                        <a href="{{ url_for('redirect_set_tag', entry_id=entry.journal_id) }}" class="button">{{ tag }}</a>
+                    {% endfor %}
+                {% else %}
+                    <a href="{{ url_for('redirect_set_tag', entry_id=entry.journal_id) }}" class="button">No Tags</a>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+        </div>
+    </article>
+    {% endfor %}
+</div>
+{% endblock %}

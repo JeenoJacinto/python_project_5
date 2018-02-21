@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="entry-list single">
+    <div class="new-entry">
+        <h2 style="margin-bottom: 90px;">Journal Entry Title: {{ entry.title }}</h2>
+        <h3 style="margin-bottom: 30px;">click tag to unset tag</h3>
+        {% if used_tags %}
+            {% for tag in used_tags %}
+            <article style="display: inline-block;  margin-bottom: 25px;">
+                <a href="{{ url_for('unsetting_tag', entry_id=entry_id, tag_name=tag.tag_label) }}" class="button">{{ tag.tag_label }}</a>
+            </article>
+            {% endfor %}
+        {% else %}
+            <p>No tags set.</p>
+        {% endif %}
+    </div>
+    <div class="new-entry">
+        <h2>List of Tags</h2>
+        <h3 style="margin-bottom: 30px;">click tag to set tag</h3>
+        {% if non_used_tags %}
+            {% for tag in non_used_tags %}
+                <article style="display: inline-block; margin-bottom: 25px;">
+                    <a href="{{ url_for('setting_tag', entry_id=entry_id, tag_name=tag.tag_label) }}" class="button">{{ tag.tag_label }}</a>
+                </article>
+            {% endfor %}
+        {% else %}
+            <p>No tags available. To create tags, click "new tag" on the top right corner</p>
+        {% endif %}
+    </div>
+    <h3>Tag changes save automatically, safe to leave page at any time when done setting tags</h3>
+</div>
+{% endblock %}

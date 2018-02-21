@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="entry-list">
+    <article>
+        <div><label for="date">STATUS: UNLOCKED</label></div>
+        <div style="margin-bottom: 50px;"><label for="date">Click lock confirm button to lock add features</label></div>
+        <a class="button" href="{{ url_for("lock_confirm")}}"><span>Lock Confirm</span></a>
+    </article>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="entry-list single">
+    <div class="new-entry">
+        <form method='POST' action=''>
+            {{ form.hidden_tag() }}
+            <label for="date">STATUS: LOCKED</label>
+            <label for="date">Enter Password to Unlock "ADD" features</label>
+            {{ form.password }}
+            <div class="error">
+            {% for error in form.password.errors %}
+                <p class="error-text">{{ error }}</p>
+            {% endfor %}
+            </div>
+            <input type="submit" value="Create Tag" class="button">
+            <a href="{{ url_for("index") }}" class="button button-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

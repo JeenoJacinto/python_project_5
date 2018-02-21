@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="entry-list single">
+    <article>
+        <h1>{{ entry_title }}</h1>
+        <time datetime="2016-01-31">{{ entry_date }}</time>
+        <div style="margin-top: 20px;">
+            {% if tag_list %}
+                {% for tag in tag_list  %}
+                    <a class="button">{{ tag }}</a>
+                {% endfor %}
+            {% else %}
+                <a class="button">No Tags</a>
+            {% endif %}
+        </div>
+        <div style="margin-top: 20px;">
+            You are about to delete this entry. Click Confirm Deletion to delete entry.
+        </div>
+        <div style="margin-top: 50px;">
+        <a href="{{ url_for('delete_entry', entry_id=entry_id) }}" class="button">Confirm Deletion</a>
+        </div>
+    </article>
+</div>
+{% endblock %}

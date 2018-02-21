@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="entry-list single">
+    <article>
+        <h1>{{ entry_title }}</h1>
+        <time datetime="2016-01-31">{{ entry_date }}</time>
+        <div style="margin-top: 20px;">
+            {% if tag_list %}
+                {% for tag in tag_list  %}
+                    <article style="display: inline-block; margin-bottom: 25px;">
+                        <a href="{{ url_for('redirect_edit', entry_id=entry_id, tags_or_details='tags') }}" class="button">{{ tag }}</a>
+                    </article>
+                {% endfor %}
+            {% else %}
+                <a href="{{ url_for('redirect_edit', entry_id=entry_id, tags_or_details='tags') }}" class="button">No Tags</a>
+            {% endif %}
+        </div>
+        <div style="margin-top: 20px;">
+        <i>click a tag to edit tags or 'Edit Entry' to edit entry details</i>
+        </div>
+        <div style="margin-top: 20px;">
+        <a href="{{ url_for('redirect_edit', entry_id=entry_id, tags_or_details='details') }}" class="button">Edit Entry</a>
+        <a href="{{ url_for('redirect_delete', entry_id=entry_id) }}" class="button">Delete Entry</a>
+        </div>
+        <div class="entry">
+            <h3>Time Spent: </h3>
+            <p>{{ entry_time_spent }}</p>
+        </div>
+        <div class="entry">
+            <h3>What I Learned:</h3>
+            {% for line in entry_learned %}
+            <p>{{ line }}</p>
+            {% endfor %}
+        </div>
+        <div class="entry">
+            <h3>Resources to Remember:</h3>
+            <ul>
+                {% for line in entry_sources %}
+                <li><a href="">{{ line }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </article>
+</div>
+{% endblock %}

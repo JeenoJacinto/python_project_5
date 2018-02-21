@@ -1,0 +1,90 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="entry-list single">
+    <div class="new-entry">
+        <h2>Edit Entry</h2>
+        <form method='POST' action=''>
+            {{ form.hidden_tag() }}
+            <label for="title">{{ form.title.label }}</label>
+            {{ form.title(default=chosen_entry.title) }}
+            {% if form.title.errors %}
+            <div class="error">
+                {% for error in form.title.errors %}
+                    <p class="error-text">{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <label for="date">{{ form.date.label }}</label>
+            {{ form.date }}
+            {% if form.date.errors %}
+            <div class="error">
+                {% for error in form.date.errors %}
+                    <p class="error-text">{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <label for="time-spent">Time Spent</label>
+            <div>
+            Hours {{ form.time_spent_hours(style="max-width: 10%; margin-right: 30px;") }}
+            {% if form.time_spent_hours.errors %}
+            <div class="error">
+                {% for error in form.title.errors %}
+                    <p class="error-text">{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+            Minutes {{ form.time_spent_minutes(style="max-width: 10%;") }}
+            {% if form.time_spent_minutes.errors %}
+            <div class="error">
+                {% for error in form.time_spent_minutes.errors %}
+                    <p class="error-text">{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+            </div>
+            <label for="what-i-learned">{{ form.what_i_learned.label }}</label>
+            {{ form.what_i_learned }}
+            {% if form.what_i_learned.errors %}
+            <div class="error">
+                {% for error in form.what_i_learned.errors %}
+                    <p class="error-text">{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <label for="resources-to-remember">{{ form.resources_to_remember.label }}</label>
+            {{ form.resources_to_remember }}
+            {% if form.resources_to_remember.errors %}
+            <div class="error">
+                {% for error in form.resources_to_remember.errors %}
+                    <p class="error-text">{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <div style="margin-bottom: 10px;">
+                <b>If entry previously had a password, you must re-enter the password or a different password to keep it secure.</b>
+            </div>
+            <div>
+            Password (Optional) {{ form.password(style="max-width: 20%; margin-right: 30px;") }}
+            {% if form.password.errors %}
+            <div class="error">
+                {% for error in form.password.errors %}
+                    <p class="error-text">{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+            Confirm Password {{ form.password2(style="max-width: 20%;") }}
+            {% if form.password2.errors %}
+            <div class="error">
+                {% for error in form.password2.errors %}
+                    <p class="error-text">{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+            </div>
+            <input type="submit" name="btn" value="Publish Entry" class="button">
+            <a href="{{ url_for("index") }}" class="button button-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
